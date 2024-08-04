@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_field %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+   
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <form action="" method="POST" id="loginForm">
+                    {{ render_field(form.username, autofocus="True") }}
+                    {{ render_field(form.password) }}
+            
+                    <div>
+                        <input type="submit" value="Entrar" class="btn btn-primary" onclick="ValidateForm()">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

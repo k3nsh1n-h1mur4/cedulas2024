@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form, render_field, render_hidden_errors %}
+
+{% block title %}
+ {{ title }}
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                {{ render_field(form.app, autofocus="True") }}
+                {{ render_field(form.apm) }}
+                {{ render_field(form.nombre) }}
+                {{ render_field(form.domicilio) }}
+                {{ render_field(form.colonia) }}
+                {{ render_field(form.mcpio) }}
+                {{ render_field(form.cp) }}
+                {{ render_field(form.local) }}
+            </div>
+            <div class="col-md">
+                {{ render_field(form.num_cel) }}
+                {{ render_field(form.email) }}
+                {{ render_field(form.l_nac) }}
+                {{ render_field(form.f_nac) }}
+                {{ render_field(form.nss) }}
+                {{ render_field(form.rfc) }}
+                {{ render_field(form.curp) }}
+                {{ render_field(form.edo_civil) }}
+            </div>
+            <div class="col-md">
+                {{ render_field(form.sexo) }}
+                {{ render_field(form.matricula) }}
+                {{ render_field(form.categoria) }}
+                {{ render_field(form.adsc) }}
+                {{ render_field(form.turno) }}
+                {{ render_field(form.t_contr) }}
+                {{ render_field(form.f_ingr) }}
+                {{ render_field(form.antiguedad) }}
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

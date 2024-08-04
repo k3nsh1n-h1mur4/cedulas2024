@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form, render_field %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form action="" method="post">
+                    <!-- <div class="form-group">
+                        <label for=""></label>
+                        <input type="text" name="username" class="form-control" autofocus>
+                    </div>                    
+                    <div class="form-group">
+                        <label for=""></label>
+                        <input type="password" name="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for=""></label>
+                        <select name="is_admin" id="">
+                            <option value="admin">is_admin</option>
+
+                        </select>
+                    </div> -->
+                    {{ render_field(form.username, autofocus="True") }}
+                    {{ render_field(form.password) }}
+                    {{ render_field(form.is_admin) }}
+                    
+                    <div>
+                        <input type="submit" value="Enviar" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
