@@ -771,4 +771,4 @@ class cedulaForm(Form):
     turno = SelectField('Turno: ', choices=TURNO)
     t_contr = SelectField('Tipo Contratación: ', choices=T_CONTR)
     f_ingr = DateField('Fecha Ingreso: ', validators=[DataRequired()])
-    antiguedad = DateField('Antiguedad: ', validators=[DataRequired()])
+    antiguedad = StringField('Antiguedad: ', validators=[DataRequired()])
