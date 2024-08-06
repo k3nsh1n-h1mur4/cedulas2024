@@ -2,11 +2,13 @@ from flask import Blueprint, request, abort, render_template
 
 from forms import cedulaForm
 
+from Connections import PyConnection 
+
 cedulas = Blueprint('cedulas', __name__, template_folder='cedulasTemplate', url_prefix='/cedulas')
 
 
 
-@cedulas.route('/nuevaCedulas', methods=['GET', 'POST'])
+@cedulas.route('/regCedula', methods=['GET', 'POST'])
 def newCedula():
     if request.method == 'GET':
         form = cedulaForm()
@@ -40,8 +42,9 @@ def newCedula():
         t_contr = data['t_contr']
         f_ingr = data['f_ingr']
         antiguedad = data['antiguedad']
-        print(app,apm,nombre)
-        if form.validate():
-            print('form válido')  
+        #print(app,apm,nombre)
+        c = PyConnection()
+        c.insertCedula(app.upper(), apm.upper(), nombre.upper(), domicilio.upper(), colonia.upper(), mcpio.upper(), cp, local.upper(), num_cel, email, l_nac.upper(), f_nac, nss, rfc.upper(), curp.upper(), edo_civil, sexo, matricula, categoria, adsc, turno, t_contr, f_ingr, antiguedad)
+
     return render_template('registro.html', title=title, form=form)
     

@@ -51,7 +51,18 @@ class PyConnection():
         except pymysql.Error as e:
             raise Exception(e)    
         
-        
+    @classmethod
+    def insertCedula(cls, app,apm,nombre,domicilio,colonia,mcpio,cp,local,num_cel,email,l_nac,f_nac,nss,rfc,curp,edo_civil,sexo,matricula,categoria,adsc,turno,t_contr,f_ingr,antiguedad):
+        try:
+            c = PyConnection()
+            conn = c.Cnx()
+            with conn.cursor() as cur:
+                cur.callproc('insertCedula',[app,apm,nombre,domicilio,colonia,mcpio,cp,local,num_cel,email,l_nac,f_nac,nss,rfc,curp,edo_civil,sexo,matricula,categoria,adsc,turno,t_contr,f_ingr,antiguedad,])
+                conn.commit()
+                cur.close()
+                conn.close()
+        except pymysql.Error as e:
+            raise Exception(e)
         
         
 if __name__ == '__main__':

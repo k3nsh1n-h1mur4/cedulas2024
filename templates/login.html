@@ -12,6 +12,7 @@
             <div class="col">
 
                 <form action="" method="POST" id="loginForm">
+		    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     {{ render_field(form.username, autofocus="True") }}
                     {{ render_field(form.password) }}
             

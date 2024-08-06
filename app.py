@@ -1,4 +1,5 @@
-from flask import Flask, request, render_template, redirect, jsonify, url_for, flash, Blueprint
+from flask import Flask, request, render_template, redirect, jsonify, url_for, flash, Blueprint, session
+from flask_wtf import CSRFProtect
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -19,6 +20,9 @@ app.config['SECRET_KEY'] = config['SECRET_KEY']
 app.config['BOOTSTRAP_BOOTSWATCH_THEME'] = 'morph'
 app.register_blueprint(cedulas)
 bootstrap = Bootstrap5(app)
+csrf = CSRFProtect(app)
+
+print(app)
 
 
 @app.route('/')
@@ -31,7 +35,7 @@ def newUser():
     if request.method == 'POST':
         data = request.form
         username = data['username']
-        password = generate_password_hash(data['password'], method=config['METHOD'], salt_length=int(config['SALT']))
+        password = generate_password_hash(data['password'], method=config['METHOD'], salt_length=16)
         c = PyConnection()
         #c.Cnx()
         c.insertUser(username, password, data['is_admin'])
@@ -67,13 +71,21 @@ def login():
                 #return jsonify({'message': 'Usuario no existe'})
             else:
                 if row['username'] and check_password_hash(row['password'], data['password']):
+                    session['username'] = row['username']
                     flash('Credenciales Correctas')
+                    #return redirect('cedulas.newCedula')
                     #flash('Credenciales Correctas')
                     #return jsonify({'message': 'Credenciales correctas'})
                 else:
                     flash('Credenciales Erroneas')
                     #return jsonify({'message': 'Credenciales Erroneas'})
-    return render_template('login.html', form=form, title=title)        
+    return render_template('login.html', form=form, title=title)       
+
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('login'))
 
 
 app.run(debug=True)
