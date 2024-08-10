@@ -11,6 +11,16 @@
     <title>{% block title %} {{ title }} {% endblock %}</title>
 </head>
 <body>
+  <div class="main-container">
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='sntsslogo.png') }}" alt="sntss-logo" srcset="">
+    </div>
+    <div class="title-container">
+        <h3>SINDICATO NACIONAL DE TRABAJADORES DEL SEGURO SOCIAL</h3>
+        <h4>SECCIÓN III, JALISCO</h4>
+        <h5>CÉDULA DE AFILIACIÓN</h5>
+    </div>
+  </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="navbar-nav mr-auto">
 	    {{ render_nav_item('newUser', 'Registrar Usuario') }}
