@@ -64,6 +64,24 @@ class PyConnection():
         except pymysql.Error as e:
             raise Exception(e)
         
+
+    @classmethod
+    def listCedula(cls):
+        try:
+            c = PyConnection()
+            conn = c.Cnx()
+            with conn.cursor() as cur:
+                cur.callproc('listAll')
+                ctx = cur.fetchall()
+                if ctx:
+                    return ctx
+                conn.commit()
+                cur.close()
+                conn.close()
+        except pymysql.Error as e:
+            raise Exception(e)
+
+
         
 if __name__ == '__main__':
     conn = PyConnection()

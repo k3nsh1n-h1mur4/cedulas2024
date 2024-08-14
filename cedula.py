@@ -47,4 +47,16 @@ def newCedula():
         c.insertCedula(app.upper(), apm.upper(), nombre.upper(), domicilio.upper(), colonia.upper(), mcpio.upper(), cp, local.upper(), num_cel, email, l_nac.upper(), f_nac, nss, rfc.upper(), curp.upper(), edo_civil, sexo, matricula, categoria, adsc, turno, t_contr, f_ingr, antiguedad)
 
     return render_template('registro.html', title=title, form=form)
-    
+
+
+@cedulas.route('/list', methods=['GET'])
+def listAll():
+    title = 'Listado General'
+    error = None
+    if request.method == 'GET':
+        c = PyConnection()
+        ctx = c.listCedula()
+        print(ctx)
+        if not ctx:
+            error = 'No hay Datos que mostrar'
+    return render_template('list.html', title=title, error=error, ctx=ctx)
