@@ -7,8 +7,10 @@ ul > li {
     display: flex;
     justify-content: center;
     max-width: 1200px;
-    margin-left: 200px;
-    background-color: rgba(163, 4, 4, 0.499);
+    margin-left: 100px;
+    margin-right: 100px;
+    max-height:100px;
+    background-color: #BE2528;
 }
 
 .image-container {
@@ -16,7 +18,7 @@ ul > li {
     margin: 0;
 
     & img {
-        width: 200px;
+        width: 100px;
         height: 100%;
     }
 }
@@ -26,5 +28,6 @@ ul > li {
     text-align: center;
     padding: 0;
     margin: 0;
+    color: white;
     margin-left: 100px;
 }
